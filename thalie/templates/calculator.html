@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Calculator{% endblock %}
+
+{% block header %}Calculator{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <form method="post" action="{% url 'calculator' %}" class="form-inline">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="num1" class="mr-2">Number 1:</label>
+        <input type="number" name="num1" class="form-control" required>
+      </div>
+      <div class="form-group ml-2">
+        <label for="operator" class="mr-2">Operator:</label>
+        <select name="operator" class="form-control" required>
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+        </select>
+      </div>
+      <div class="form-group ml-2">
+        <label for="num2" class="mr-2">Number 2:</label>
+        <input type="number" name="num2" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary ml-2">Calculate</button>
+    </form>
+
+    {% if result %}
+      <div class="mt-4">
+        <h4>Result:</h4>
+        <p class="lead">{{ result }}</p>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+<!-- yourappname/templates/yourappname/delete_product.html -->
+{% extends 'base.html' %}
+
+{% block title %}Delete Product{% endblock %}
+
+{% block header %}Delete Product{% endblock %}
+
+{% block content %}
+  <p>Are you sure you want to delete '{{ product.title }}'?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url 'product_list' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+{% endblock %}

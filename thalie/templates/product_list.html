@@ -1,0 +1,40 @@
+this is the product_list file just modify it  " <!-- yourappname/templates/yourappname/product_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Product List{% endblock %}
+
+{% block header %}Product List{% endblock %}
+
+{% block content %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Brand</th>
+        <th>Image</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+        <tr>
+          <td>{{ product.title }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.category.name }}</td>
+          <td>{{ product.brand.name }}</td>
+          <td><img src="{{ product.image.url }}" alt="{{ product.title }}" style="max-width: 50px;"></td>
+          <td>
+            <a href="{% url 'update_product' pk=product.pk %}" class="btn btn-sm btn-warning">Update</a>
+            <a href="{% url 'delete_product' pk=product.pk %}" class="btn btn-sm btn-danger">Delete</a>
+            <a href="{% url 'add_to_inventory' product_id=product.pk %}" class="btn btn-sm btn-primary">Add to Inventory</a>
+            <a href="{% url 'add_to_cart' product_id=product.pk %}" class="btn btn-sm btn-secondary">Add to Cart</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %} "

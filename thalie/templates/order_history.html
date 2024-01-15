@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Order History{% endblock %}
+
+{% block header %}Order History{% endblock %}
+
+{% block content %}
+  <ul>
+    {% for order in orders %}
+      <li>
+        <p>Order ID: {{ order.pk }}</p>
+        <p>Total Price: {{ order.total_price }}</p>
+        <p>Order Date: {{ order.created_at }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,37 @@
+<!-- yourappname/templates/yourappname/cart_view.html -->
+{% extends 'base.html' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block header %}Cart{% endblock %}
+
+{% block content %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+        <tr>
+          <td>{{ item.product.title }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>
+            <a href="{% url 'update_cart' item.pk 'increase' %}" class="btn btn-sm btn-primary">Increase</a>
+            <a href="{% url 'update_cart' item.pk 'decrease' %}" class="btn btn-sm btn-warning">Decrease</a>
+            <a href="{% url 'remove_from_cart' item.pk %}" class="btn btn-sm btn-danger">Remove</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% if cart_items %}
+    <div class="text-center">
+      <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
+    </div>
+  {% endif %}
+{% endblock %}

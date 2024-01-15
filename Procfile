@@ -1,0 +1,1 @@
+web gunicorn thaliestore.wsgi:application --log-file -

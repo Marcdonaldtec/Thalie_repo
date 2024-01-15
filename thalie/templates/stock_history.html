@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Stock History{% endblock %}
+
+{% block header %}Stock History{% endblock %}
+
+{% block content %}
+  <h3>{{ product.title }} - Stock History</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Adjustment</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entry in stock_history_entries %}
+        <tr>
+          <td>{{ entry.timestamp }}</td>
+          <td>{{ entry.adjustment }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

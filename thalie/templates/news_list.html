@@ -1,0 +1,24 @@
+<!-- yourappname/templates/yourappname/news_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}News List{% endblock %}
+
+{% block header %}News List{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-group">
+          {% for article in news_articles %}
+            <li class="list-group-item">
+              <h3>{{ article.title }}</h3>
+              <p>{{ article.content }}</p>
+              <small>Published on: {{ article.created_at }}</small>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}

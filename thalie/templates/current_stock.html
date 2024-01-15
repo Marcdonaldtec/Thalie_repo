@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Current Stock{% endblock %}
+
+{% block header %}Current Stock{% endblock %}
+
+{% block content %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Current Stock</th>
+        <th>Stock History</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products_with_stock %}
+        <tr>
+          <td>{{ product.title }}</td>
+          <td>{{ product.inventory.quantity }}</td>
+          <td><a href="{% url 'stock_history' product_id=product.id %}">View History</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

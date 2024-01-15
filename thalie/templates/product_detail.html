@@ -1,0 +1,24 @@
+<!-- yourappname/templates/yourappname/product_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}Product Detail: {{ product.title }}{% endblock %}
+
+{% block header %}Product Detail: {{ product.title }}{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{ product.image.url }}" alt="{{ product.title }}" style="max-width: 100%;">
+    </div>
+    <div class="col-md-6">
+      <h2>{{ product.title }}</h2>
+      <p>{{ product.description }}</p>
+      <p><strong>Price:</strong> ${{ product.price }}</p>
+      <p><strong>Category:</strong> {{ product.category.name }}</p>
+      <p><strong>Brand:</strong> {{ product.brand.name }}</p>
+      <p>
+        <a href="{% url 'add_to_inventory' product_id=product.pk %}" class="btn btn-primary">Add to Inventory</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}

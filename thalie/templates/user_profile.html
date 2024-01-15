@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block header %}User Profile{% endblock %}
+
+{% block content %}
+  <h2>Welcome, {{ user.username }}!</h2>
+  <p>Email: {{ user.email }}</p>
+
+  <h3>Cart Content</h3>
+  <ul>
+    {% for item in cart_items %}
+      <li>{{ item.product.title }} - Quantity: {{ item.quantity }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Order History</h3>
+  <ul>
+    {% for order in orders %}
+      <li>Order #{{ order.id }} - Total: ${{ order.total }}</li>
+      <!-- Add more order details as needed -->
+    {% endfor %}
+  </ul>
+  <a href="{% url 'edit_profile' %}">Edit Profile</a>
+{% endblock %}
+

@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Order Confirmation{% endblock %}
+
+{% block header %}Order Confirmation{% endblock %}
+
+{% block content %}
+  <p>Your order has been placed successfully!</p>
+  <p>Order ID: {{ order.pk }}</p>
+  <p>Total Price: {{ order.total_price }}</p>
+{% endblock %}
+<div class="text-center">
+    <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
+  </div>

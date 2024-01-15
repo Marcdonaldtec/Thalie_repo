@@ -1,0 +1,42 @@
+<!-- yourappname/templates/yourappname/search_products.html -->
+{% extends 'base.html' %}
+
+{% block title %}Search Products{% endblock %}
+
+{% block header %}Search Products{% endblock %}
+
+{% block content %}
+  <form method="get" class="mb-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search products" name="q" value="{{ query }}">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+    </div>
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Brand</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+        <tr>
+          <td>{{ product.title }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.category.name }}</td>
+          <td>{{ product.brand.name }}</td>
+          <td><img src="{{ product.image.url }}" alt="{{ product.title }}" style="max-width: 50px;"></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
