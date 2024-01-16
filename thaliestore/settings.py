@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'thalie',
     
 ]
@@ -151,9 +152,8 @@ YOUR_EMAIL_ADDRESS = 'marcdonaldtech@gmail.com'
 
 
 if DEBUG:
+    # Debug-related settings and apps
     INSTALLED_APPS += ['debug_toolbar']
-
-if DEBUG:
     MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
 
 
