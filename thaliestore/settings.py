@@ -155,3 +155,9 @@ if DEBUG:
 
 if DEBUG:
     MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+
+
+# Define the path for collected static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
