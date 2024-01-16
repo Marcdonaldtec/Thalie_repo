@@ -1,4 +1,4 @@
-# yourappname/cart.py
+
 from .models import CartItem
 
 class Carts:
