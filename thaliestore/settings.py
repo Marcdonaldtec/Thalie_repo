@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'thalie',
-    'debug_toolbar',
+    
 ]
 
 MIDDLEWARE = [
@@ -148,3 +148,10 @@ EMAIL_HOST_USER = 'marcdonaldtech@gmail.com'  # Replace with your Gmail email ad
 EMAIL_HOST_PASSWORD = 'dueg nppn xaoq dlyg'  # Replace with your Gmail app password (generate one if 2-factor authentication is enabled)
 DEFAULT_FROM_EMAIL = 'marcdonaldtech@gmail.com'  # Replace with your Gmail email address
 YOUR_EMAIL_ADDRESS = 'marcdonaldtech@gmail.com'
+
+
+if DEBUG:
+    INSTALLED_APPS += ['debug_toolbar']
+
+if DEBUG:
+    MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
