@@ -1,6 +1,5 @@
 from django.urls import path
-from .views import (product_list, create_product, update_product, 
-                    delete_product, search_products,product_views,
+from .views import (product_list, search_products,product_views,
                     inventory_list, add_to_inventory,product_detail,
                     calculator, news_list, current_stock,
                     adjust_stock, stock_history,add_to_cart,
@@ -12,13 +11,10 @@ from .views import (product_list, create_product, update_product,
                     edit_profile
 )
 urlpatterns = [
+    # product section
     path('', product_views, name='product_views'),
     path('products', product_list, name='product_list'),
-    path('products/create/', create_product, name='create_product'),
-    path('products/<int:pk>/update/', update_product, name='update_product'),
-    path('products/<int:pk>/delete/', delete_product, name='delete_product'),
     path('products/search/', search_products, name='search_products'),
-    path('product-views/', product_views, name='product_views'),
     path('products/<int:pk>/', product_detail, name='product_detail'), 
     path('calculator/', calculator, name='calculator'),
     path('inventory/', inventory_list, name='inventory_list'),
@@ -45,10 +41,12 @@ urlpatterns = [
     path('password_reset_confirm/<uidb64>/<token>/', password_reset_confirm, name='password_reset_confirm'),
     # profile
     path('user_profile/', user_profile, name='user_profile'),
-     path('edit_profile/', edit_profile, name='edit_profile'),
+    path('edit_profile/', edit_profile, name='edit_profile'),
      
 ]
-
+    # path('products/create/', create_product, name='create_product'),
+    # path('products/<int:pk>/update/', update_product, name='update_product'),
+    # path('products/<int:pk>/delete/', delete_product, name='delete_product'),
 
 
 

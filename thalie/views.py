@@ -18,46 +18,9 @@ def product_views(request):
 def is_admin(user):
     return user.is_authenticated and user.is_staff
 
-@user_passes_test(is_admin)
-def create_product(request):
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Product created successfully.')
-            return redirect('product_list')
-    else:
-        form = ProductForm()
-
-    return render(request, 'create_product.html', {'form': form})
-
-@user_passes_test(is_admin)
-def update_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect('product_list')  # Assuming you have a view named 'product_list'
-    else:
-        form = ProductForm(instance=product)
-
-    return render(request, 'update_product.html', {'form': form})
-
 def product_list(request):
     products = Product.objects.all()
     return render(request, 'product_list.html', {'products': products})
-
-@user_passes_test(is_admin)
-def delete_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    
-    if request.method == 'POST':
-        product.delete()
-        return redirect('product_list')  # Assuming you have a view named 'product_list'
-    
-    return render(request, 'delete_product.html', {'product': product})
 
 def search_products(request):
     query = request.GET.get('q', '')
@@ -68,7 +31,9 @@ def search_products(request):
         products = Product.objects.all()
 
     return render(request, 'search_products.html', {'products': products, 'query': query})
-
+def product_detail(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, 'product_detail.html', {'product': product})
 
 def product_views(request):
     products = Product.objects.all()
@@ -108,11 +73,6 @@ def add_to_inventory(request, product_id):
         form = InventoryForm()
 
     return render(request, 'add_to_inventory.html', {'form': form, 'product': product})
-
-
-def product_detail(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    return render(request, 'product_detail.html', {'product': product})
 
 def calculator(request):
     result = None

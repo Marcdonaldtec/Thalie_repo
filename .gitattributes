@@ -1,0 +1,10 @@
+# Set the default behavior for all files
+* text=auto
+
+# Explicitly declare files that will always have LF line endings on checkout
+*.py text eol=lf
+*.txt text eol=lf
+
+# Explicitly declare files that always have CRLF line endings on checkout
+*.css text eol=crlf
+*.js text eol=crlf
