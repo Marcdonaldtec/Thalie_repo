@@ -12,6 +12,7 @@ from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmVie
 from django.core.mail import send_mail
 from django.conf import settings
 
+
 def product_views(request):
     return render(request, 'product_views.html')
 
@@ -31,6 +32,7 @@ def search_products(request):
         products = Product.objects.all()
 
     return render(request, 'search_products.html', {'products': products, 'query': query})
+
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     return render(request, 'product_detail.html', {'product': product})
@@ -131,7 +133,7 @@ def stock_history(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     stock_history_entries = StockHistory.objects.filter(product=product).order_by('-timestamp')
     return render(request, 'stock_history.html', {'product': product, 'stock_history_entries': stock_history_entries})
-
+login_required(login_url='login_user')
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     
@@ -148,7 +150,7 @@ def add_to_cart(request, product_id):
     
     messages.success(request, f"{product.title} added to your cart.")
     return redirect('cart_view')
-
+login_required(login_url='login_user')
 def cart_view(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     cart_items = CartItem.objects.filter(cart=cart)
@@ -175,7 +177,7 @@ def remove_from_cart(request, cart_item_id):
     return redirect('cart_view')
 
 
-@login_required
+@login_required(login_url='login_user')
 def checkout(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     cart_items = CartItem.objects.filter(cart=cart)
@@ -254,7 +256,7 @@ def password_reset_confirm(request, uidb64, token):
     return PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html')(request, uidb64=uidb64, token=token)
 
 
-@login_required
+@login_required(login_url='login_user')
 def user_profile(request):
     user = request.user
     cart_items = CartItem.objects.filter(cart__user=user)
@@ -262,7 +264,7 @@ def user_profile(request):
 
     return render(request, 'user_profile.html', {'user': user, 'cart_items': cart_items, 'orders': orders})
 
-@login_required
+@login_required(login_url='login_user')
 def edit_profile(request):
     user = request.user
 
